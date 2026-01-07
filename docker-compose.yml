@@ -12,7 +12,7 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
   mongo:
     image: mongo:6
@@ -45,7 +45,7 @@ services:
     build: ./Frontend
     container_name: netflix_frontend
     ports:
-      - "5174:80"
+      - "5173:80"
     depends_on:
       - backend
 
