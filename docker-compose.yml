@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: netflix_db
+    environment:
+      POSTGRES_USER: user123
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: netflix_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432" 
+
+  backend:
+    build: ./Backend
+    container_name: netflix_backend
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: "postgresql://user123:password123@db:5432/netflix_db?schema=public"
+      PORT: 3000
+      JWT_SECRET: "ton_super_secret"
+
+  # --- Frontend (Vite + Nginx) ---
+  frontend:
+    build: ./Frontend
+    container_name: netflix_frontend
+    ports:
+      - "8081:80" 
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
