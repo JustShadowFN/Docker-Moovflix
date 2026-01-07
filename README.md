@@ -123,7 +123,7 @@ npm run dev
 ```
 
 L’application démarre sur :
-👉 **[http://localhost:5174](http://localhost:5174)** (ou un autre port disponible)
+👉 **[http://localhost:5174](http://localhost:5173)** (ou un autre port disponible)
 
 ---
 
